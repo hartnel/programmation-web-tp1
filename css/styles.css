@@ -138,51 +138,6 @@ address {
   float: right;
 }
 
-@media (min-width:773px) and (max-width:1221px){
-  .col-md-10 input{
-    width: 85%;
-    margin-left: 35px;
-  }
-  
-  .span-label{
-    margin-right: 100px;
-  }
-}
-@media (min-width:768px) and (max-width:1118px){
-  .hide{
-    width: 10%;
-  }
-  
-  .col-md-4 button{
-    width: 134px;
-  }
-  #signup_button {
-    width: 300px;
-  }
-}
-@media (max-width:768px){
-  .hide{
-   display: none;
-  }
-  .col-md-4{
-    width: 33.333333%;
-  }
-  
-}
-@media (max-width:525px){
-  .col-md-4{
-    min-width: 50%;
-  }
-}
-@media (max-width:525px){
-  .col-md-4{
-    min-width: 100%;
-    padding-left: 60px;
-  }
-  .col-md-4 button{
-    float: none;
-  }
-  #signup_button {
-    margin-left: -10px;
-  }
+#login_text{
+  margin-top: 30px;
 }
