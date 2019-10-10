@@ -4,37 +4,36 @@ var sci = true;
 var keysymbs = ['+', '*', '/', ')', '(', '-']
 
 function codeinit() {
-    var buttons = document.getElementsByClassName("buttons")
+    var buttons = document.getElementsByClassName("buttons");
     for (var i = 0; i < buttons.length; i++) {
         var button = buttons[i];
         button.setAttribute("onclick", "Maincontroller(event)");
     }
-    document.getElementById("key").addEventListener("keyup", function (key) {
-        var arg = "";
+    document.getElementById("keyEventConsumer").addEventListener("keyup", function (key) {
+        var keyarg = "";
         if (key.key === "Backspace") {
-            arg = "back";
+            keyarg = "back";
         }
         if (key.key === "Enter") {
-            arg = "=";
+            keyarg = "=";
         }
         else {
-            var r = "";
-            r = Number(key.key);
-            if (isNaN(r)) {
-                r = key.key;
+            let converted = Number(key.key);
+            if (isNaN(converted)) {
+                converted = key.key;
             }
-            if (typeof r === "number" || keysymbs.includes(r)) {
-                arg = r;
+            if (typeof converted === "number" || keysymbs.includes(converted)) {
+                keyarg = converted;
             }
         }
-        if (arg !== "") {
-            Maincontroller(undefined, arg);
+        if (keyarg !== "") {
+            Maincontroller(undefined, keyarg);
         }
     });
 }
 
 function Maincontroller(event = undefined, arg = undefined) {
-    var targetId = arg ? arg : event.target.id;
+    var targetId = arg !== undefined ? arg : event.target.id;
     switch (targetId) {
         case "back":
             curentValue = String(curentValue);
@@ -47,14 +46,12 @@ function Maincontroller(event = undefined, arg = undefined) {
         case "=":
             try {
                 result = curentValue.replace(/cos/gi, "Math.cos")
-                    .replace(/ln/gi, "Math.log2")
                     .replace(/log/gi, "Math.log10")
-                    .replace(/cos/gi, "Math.cos")
+                    .replace(/ln/gi, "Math.log2")
                     .replace(/sin/gi, "Math.cos")
                     .replace(/tan/gi, "Math.cos")
                     .replace(/sqrt/gi, "Math.sqrt")
                     .replace(/pi/gi, "Math.PI");
-                console.log(result);
                 result = eval(result);
                 if (!result) {
                     result = "";
@@ -63,8 +60,6 @@ function Maincontroller(event = undefined, arg = undefined) {
             catch (err) {
                 result = "erreur";
             }
-            console.log(result);
-            document.getElementById("result").value = "";
             document.getElementById("result").value = result;
             if (result === "erreur") {
                 reset();
